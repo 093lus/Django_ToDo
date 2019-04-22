@@ -29,7 +29,7 @@ SECRET_KEY = '%dht+c)fa#*(q=ihu3-%qavb*mb79637^(0e#kpegz@srj-qjh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-3-95-199-121.compute-1.amazonaws.com', '127.0.0.1', '0.0.0.0']
 TEMPLATE_CONTEXT_PROCESSORS = (
 "django.core.context_processors.static"
 )
