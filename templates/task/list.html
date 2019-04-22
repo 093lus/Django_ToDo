@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+    <script type="text/javascript" src="{% static 'js/ajax_request.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/delete.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/search.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/create.js' %}"></script>
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+      <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'js/sort.js' %}"></script>
+<!--  <script>-->
+<!--  $( function() {-->
+<!--    $( "#sortable" ).sortable({update : function(event, ui) {-->
+<!--    var index = ui.item.index();-->
+<!--    var start_pos = ui.item.data('start_pos');-->
+
+<!--    $('#sortable li:nth-child(' + (index + 1) + ')').html(index);-->
+
+<!--    if (start_pos < index) {-->
+<!--        //update the items before the re-ordered item-->
+<!--        for(var i=index; i > 0; i&#45;&#45;){-->
+<!--            $('#sortable li:nth-child(' + i + ')').html(i - 1);-->
+<!--        }-->
+<!--    }-->
+<!--    else {-->
+<!--        //update the items after the re-ordered item-->
+<!--        for(var i=index+2;i <= $("#sortable li").length; i++){-->
+<!--            $('#sortable li:nth-child(' + i + ')').html(i-1);-->
+<!--        }-->
+<!--}-->
+<!--}});-->
+<!--    $( "#sortable" ).disableSelection();-->
+<!--  } );-->
+<!--  </script>-->
+
+
+</head>
+<body>
+
+<div id="tasks">
+
+
+  <input class="search" placeholder="Search" />
+
+  <button class="sort" onclick="search()">
+Search
+  </button>
+
+    <h2 style="color:blue">TASKS</h2>
+
+  <ul id="sortable" class="list" >
+      {% for task in object_list %}
+    <li class="ui-state-default row_{{task.id}}" value="{{task.id}}" style="height:150px">
+      <h3 class="name ">{{task.name}}</h3>
+      <p class="desciption ">{{task.description}}</p>
+        <button onclick="delete_task({{task.id}})" >delete</button>
+    </li>
+
+   {% endfor %}
+  </ul>
+<button id="create">create new task</button>
+</div>
+
+
+
+</body>
+</html>
